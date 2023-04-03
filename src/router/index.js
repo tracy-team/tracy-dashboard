@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+// import HomeView from "../views/HomeView.vue";
 import Dashboard from "../views/DashboardView.vue";
 import DetailLaporan from "../views/DetailLaporan.vue";
 import Messages from "../views/MessagesView.vue";
@@ -11,11 +11,11 @@ import Login from "../views/LoginView.vue";
 import { isAuthenticated } from "./auth";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: HomeView,
-  },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: HomeView,
+  // },
   {
     path: "/login",
     name: "Login",

@@ -32,11 +32,16 @@ export default {
   },
   watch: {
     detailReport() {
-      this.location.center.lat = parseFloat(this.detailReport.lokasi.latitude);
-      this.location.center.lng = parseFloat(this.detailReport.lokasi.longitude);
-
-      this.location.marker.lat = parseFloat(this.detailReport.lokasi.latitude);
-      this.location.marker.lng = parseFloat(this.detailReport.lokasi.longitude);
+      this.location = {
+        center: {
+          lat: parseFloat(this.detailReport.lokasi.latitude),
+          lng: parseFloat(this.detailReport.lokasi.longitude),
+        },
+        marker: {
+          lat: parseFloat(this.detailReport.lokasi.latitude),
+          lng: parseFloat(this.detailReport.lokasi.longitude),
+        },
+      };
     },
   },
 };
