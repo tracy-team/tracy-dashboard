@@ -38,11 +38,19 @@
           v-on:click="onClickReport(report[0].id)"
         >
           <div class="profile-image">
-            <img :src="report[1].picture" alt="" />
+            <img
+              v-if="report[1].picture !== ''"
+              :src="report[1].picture"
+              alt=""
+            />
+            <img v-else src="@/assets/profile-image.png" alt="" />
           </div>
           <div class="info ml-3">
             <div class="name">{{ report[1].username }}</div>
-            <div class="address">{{ report[3].detailLokasi }}</div>
+            <div v-if="report[3].detailLokasi" class="address">
+              {{ report[3].detailLokasi }}
+            </div>
+            <div v-else class="address">Tidak ada detail lokasi</div>
           </div>
           <div class="additional"></div>
         </button>
@@ -91,6 +99,7 @@ export default {
 
     onClickReport(id) {
       this.fetchDetailReport(id);
+      this.$router.push("/dashboard/laporan/detail");
     },
     updateDate() {
       setInterval(() => {
@@ -108,7 +117,6 @@ export default {
     this.date.bulan = new Date().getMonth();
     this.date.jam = new Date().getHours();
     this.date.menit = new Date().getMinutes();
-
     this.updateDate();
   },
 };
@@ -183,6 +191,10 @@ export default {
       }
     }
   }
+}
+
+.address {
+  width: 200px;
 }
 
 .contact-square:hover {

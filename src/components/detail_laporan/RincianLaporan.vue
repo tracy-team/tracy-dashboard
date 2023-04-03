@@ -18,14 +18,21 @@
             <div class="row">
               <div class="col-lg-9">
                 <div class="data-laporan">
-                  <div class="name">Aureliess - 08887074481</div>
-                  <div class="case">Pencurian</div>
-                  <div class="address">Jl. Telang Jaya</div>
+                  <div class="name">
+                    {{ detailReport.user.username }} -
+                    {{ detailReport.user.noHp }}
+                  </div>
+                  <div class="case">
+                    {{ detailReport.report.jenisKejahatan }}
+                  </div>
+                  <div class="address">
+                    {{ detailReport.lokasi.detailLokasi }}
+                  </div>
                 </div>
               </div>
               <div class="col-lg-3">
                 <div class="additional">
-                  19:00 <i class="uil uil-ellipsis-v"></i>
+                  <!-- 19:00 <i class="uil uil-ellipsis-v"></i> -->
                 </div>
               </div>
             </div>
@@ -40,6 +47,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Laporan",
   data() {
@@ -48,10 +57,8 @@ export default {
       days: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
     };
   },
-  created() {
-    setInterval(() => {
-      this.date = new Date();
-    }, 1000);
+  computed: {
+    ...mapState("reports", ["detailReport"]),
   },
 };
 </script>

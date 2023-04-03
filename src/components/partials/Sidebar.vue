@@ -9,6 +9,7 @@
       <div class="col-lg-12 mb-5">
         <div class="sidebar-brand">
           <img src="@/assets/polres_logo.png" alt="" />
+          <!-- <h3>{{ user.namaKantor }}</h3> -->
         </div>
       </div>
       <div class="col-lg-12 mb-5">
@@ -42,8 +43,13 @@
                 ><i class="uil uil-clock-three"></i> Riwayat</router-link
               >
             </li>
-            <li class="mb-2" :class="{ active: $route.name === 'Setting' }">
+            <!-- <li class="mb-2" :class="{ active: $route.name === 'Setting' }">
               <a href=""><i class="uil uil-setting"></i> Settings</a>
+            </li> -->
+            <li class="btn">
+              <a href=""
+                ><i class="uil uil-setting" @click="logout()"></i> Logout</a
+              >
             </li>
           </ul>
         </div>
@@ -53,8 +59,18 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "Sidebar",
+  computed: {
+    ...mapActions("user", ["deleteUser"]),
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("vuex");
+    },
+  },
 };
 </script>
 
@@ -90,6 +106,13 @@ export default {
       }
       .active {
         background-color: #3c65c9;
+        a {
+          color: #fff;
+        }
+      }
+      .btn-logout {
+        background-color: #c93c3c;
+        margin: 0;
         a {
           color: #fff;
         }

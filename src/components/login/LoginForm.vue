@@ -50,6 +50,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import { isAuthenticated } from "@/router/auth";
+import { swal } from "sweetalert2/dist/sweetalert2";
 
 export default {
   name: "LoginForm",
@@ -62,18 +64,36 @@ export default {
     };
   },
   computed: {
-    ...mapState("policeDashboard", ["status", "loginStatus"]),
+    ...mapState("user", ["user"]),
   },
   methods: {
-    ...mapActions("policeDashboard", ["login"]),
+    ...mapActions("user", ["login"]),
 
     async submitForm(form) {
-      await this.login(form);
+      try {
+        await this.login(form);
+      } catch (error) {
+        this.$swal({
+          icon: "error",
+          title: "Username atau password salah",
+          confirmButtonColor: "#3c65c9",
+        });
+      }
     },
   },
   watch: {
-    status() {
-      this.$swal(this.status);
+    user() {
+      if (isAuthenticated()) {
+        this.$swal({
+          icon: "success",
+          title: "Berhasil login",
+          confirmButtonColor: "#3c65c9",
+        }).then((res) => {
+          if (res.isConfirmed) {
+            this.$router.push("/dashboard");
+          }
+        });
+      }
     },
   },
 };

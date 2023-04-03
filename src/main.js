@@ -12,6 +12,9 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.css";
 
+import "@iconscout/unicons/css/line.css";
+// import "@iconscout/unicons/css/solid.css";
+
 axios.defaults.baseURL = "https://tracy-api-2sen356ova-uc.a.run.app";
 
 createApp(App)
